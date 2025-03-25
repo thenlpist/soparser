@@ -61,7 +61,6 @@ class Parser:
             "num_chars": num_chars,
             "num_tokens": num_tokens,
             "jsonresume": resume,
-
         }
 
     def parse_standalone(self, text):

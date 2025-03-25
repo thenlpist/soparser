@@ -19,14 +19,6 @@ class ResumeSection(BaseModel, abc.ABC):
         pass
 
 
-# class Step(BaseModel):
-# 	explanation: str = Field(..., title="Explanation", description="A detailed explanation of the step.")
-# 	output: str = Field(..., title="Output", description="The output result of the step.")
-#
-# class MathResponse(BaseModel):
-# 	steps: list[Step] = Field(..., title="Steps", description="A list of steps involved in solving the problem.")
-# 	final_answer: str = Field(..., title="Final Answer", description="The final answer to the problem.")
-
 # ----------------------------------------------------------------------------------------------------------------------
 # Awards
 # ----------------------------------------------------------------------------------------------------------------------
