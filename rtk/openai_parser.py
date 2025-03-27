@@ -7,8 +7,8 @@ from logging import handlers
 
 from openai import OpenAI
 
-from resume_dataclass import Resume, ResumeSerializer
-from validation import Validation
+from rtk.resume_dataclass import Resume, ResumeSerializer
+from rtk.validation import Validation
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

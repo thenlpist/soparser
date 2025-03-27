@@ -8,7 +8,7 @@ from pathlib import Path
 import jsonschema
 from jsonschema.exceptions import ValidationError
 
-from resume_dataclass import Resume
+from rtk.resume_dataclass import Resume
 
 
 logger = logging.getLogger(__name__)
