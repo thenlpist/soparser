@@ -104,7 +104,8 @@ def main(text):
 
 
 if __name__ == "__main__":
-    
+    from dotenv import load_dotenv
+    load_dotenv()
     home = Path.home()
     data_dir = home.joinpath("Data/Jobscan/Resumes/2_Annotation/20250326_Resume_labeling/Resumes_to_label")
     # text = open(data_dir.joinpath("4587062.txt")).read()
