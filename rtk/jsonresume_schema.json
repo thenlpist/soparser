@@ -1,0 +1,1053 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "basics",
+        "work",
+        "education",
+        "volunteer",
+        "awards",
+        "certificates",
+        "publications",
+        "skills",
+        "languages",
+        "interests",
+        "references",
+        "projects"
+    ],
+    "properties": {
+        "basics": {
+            "type": "object",
+            "default": {},
+            "title": "The basics Schema",
+            "required": [
+                "name",
+                "email",
+                "label",
+                "phone",
+                "summary",
+                "location",
+                "profiles"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The name Schema",
+                    "examples": [
+                        "John Doe"
+                    ]
+                },
+                "email": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The email Schema",
+                    "examples": [
+                        "john_doe@gmail.com"
+                    ]
+                },
+                "label": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The label Schema",
+                    "examples": [
+                        "Manager - Donations \u0026 Sponsorships"
+                    ]
+                },
+                "phone": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The phone Schema",
+                    "examples": [
+                        "514260-6137"
+                    ]
+                },
+                "summary": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The summary Schema",
+                    "examples": [
+                        "Experienced marketing brand manager who has worked for global leaders in the aviation industry. Managed the strategic planning and budget for brand awareness activities on an international scale. Organized events of varying sizes that targeted both internal and external customers. Developed traditional advertising and digital marketing campaigns in support of brand strategy. Collaborated effectively with marketing, sales, and other teams to achieve corporate objectives. Optimized sponsorship opportunities by continuously seeking out promotional initiatives. Managed agency and vendor relationships. Created management tools, dashboards, and performance indicators (KPIs) . Delivered numerous projects by demonstrating innovative project management and problem-solving skills, creativity, and the ability to meet tight deadlines while maintaining respectful and professional relationships."
+                    ]
+                },
+                "location": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The location Schema",
+                    "required": [
+                        "city",
+                        "region",
+                        "address",
+                        "postalCode",
+                        "countryCode"
+                    ],
+                    "properties": {
+                        "city": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The city Schema",
+                            "examples": [
+                                "Lachine"
+                            ]
+                        },
+                        "region": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The region Schema",
+                            "examples": [
+                                "Quebec"
+                            ]
+                        },
+                        "address": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The address Schema",
+                            "examples": [
+                                "123, 2nd Avenue Lachine"
+                            ]
+                        },
+                        "postalCode": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The postalCode Schema",
+                            "examples": [
+                                "H8T 2H7"
+                            ]
+                        },
+                        "countryCode": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The countryCode Schema",
+                            "examples": [
+                                "Canada"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "city": "Lachine",
+                        "region": "Quebec",
+                        "address": "123, 2nd Avenue Lachine",
+                        "postalCode": "H8T 2H7",
+                        "countryCode": "Canada"
+                    }]
+                },
+                "profiles": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The profiles Schema",
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "title": "A Schema",
+                        "required": [
+                            "network",
+                            "username"
+                        ],
+                        "properties": {
+                            "network": {
+                                "type": "string",
+                                "default": "",
+                                "title": "The network Schema",
+                                "examples": [
+                                    "Linkedin"
+                                ]
+                            },
+                            "username": {
+                                "type": "string",
+                                "default": null,
+                                "title": "The username Schema",
+                                "examples": [
+                                    null
+                                ]
+                            }
+                        },
+                        "examples": [{
+                            "network": "Linkedin",
+                            "username": null
+                        }]
+                    },
+                    "examples": [
+                        [{
+                            "network": "Linkedin",
+                            "username": null
+                        }]
+                    ]
+                }
+            },
+            "examples": [{
+                "name": "John Doe",
+                "email": "john_doe@gmail.com",
+                "label": "Manager - Donations \u0026 Sponsorships",
+                "phone": "514260-6137",
+                "summary": "Experienced marketing brand manager who has worked for global leaders in the aviation industry. Managed the strategic planning and budget for brand awareness activities on an international scale. Organized events of varying sizes that targeted both internal and external customers. Developed traditional advertising and digital marketing campaigns in support of brand strategy. Collaborated effectively with marketing, sales, and other teams to achieve corporate objectives. Optimized sponsorship opportunities by continuously seeking out promotional initiatives. Managed agency and vendor relationships. Created management tools, dashboards, and performance indicators (KPIs) . Delivered numerous projects by demonstrating innovative project management and problem-solving skills, creativity, and the ability to meet tight deadlines while maintaining respectful and professional relationships.",
+                "location": {
+                    "city": "Lachine",
+                    "region": "Quebec",
+                    "address": "123, 2nd Avenue Lachine",
+                    "postalCode": "H8T 2H7",
+                    "countryCode": "Canada"
+                },
+                "profiles": [{
+                    "network": "Linkedin",
+                    "username": null
+                }]
+            }]
+        },
+        "work": {
+            "type": "array",
+            "default": [],
+            "title": "The work Schema",
+            "items": {
+                "type": "object",
+                "default": {},
+                "title": "A Schema",
+                "required": [
+                    "name",
+                    "endDate",
+                    "summary",
+                    "location",
+                    "position",
+                    "startDate",
+                    "highlights",
+                    "description"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The name Schema",
+                        "examples": [
+                            "ICT Infracon"
+                        ]
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The endDate Schema",
+                        "examples": [
+                            "2018-02-15"
+                        ]
+                    },
+                    "summary": {
+                        "type": "string",
+                        "default": null,
+                        "title": "The summary Schema",
+                        "examples": [
+                            null
+                        ]
+                    },
+                    "location": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The location Schema",
+                        "examples": [
+                            "Ahmedabad"
+                        ]
+                    },
+                    "position": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The position Schema",
+                        "examples": [
+                            "Assistant Software Engineer"
+                        ]
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The startDate Schema",
+                        "examples": [
+                            "2017-06-15"
+                        ]
+                    },
+                    "highlights": {
+                        "type": "array",
+                        "default": [],
+                        "title": "The highlights Schema",
+                        "items": {
+                            "type": "string",
+                            "title": "A Schema",
+                            "examples": [
+                                "Demonstrated expertise in Core JAVA, Spring Boot, and Hibernate frameworks, leading to a 20% increase in application efficiency",
+                                "Optimized the database operations in Oracle by 5% in time complexity and performed PL/SQL features"
+                            ]
+                        },
+                        "examples": [
+                            ["Demonstrated expertise in Core JAVA, Spring Boot, and Hibernate frameworks, leading to a 20% increase in application efficiency",
+                                "Optimized the database operations in Oracle by 5% in time complexity and performed PL/SQL features"
+                            ]
+                        ]
+                    },
+                    "description": {
+                        "type": "string",
+                        "default": null,
+                        "title": "The description Schema",
+                        "examples": [
+                            null
+                        ]
+                    }
+                },
+                "examples": [{
+                    "name": "ICT Infracon",
+                    "endDate": "2018-02-15",
+                    "summary": null,
+                    "location": "Ahmedabad",
+                    "position": "Assistant Software Engineer",
+                    "startDate": "2017-06-15",
+                    "highlights": [
+                        "Demonstrated expertise in Core JAVA, Spring Boot, and Hibernate frameworks, leading to a 20% increase in application efficiency",
+                        "Optimized the database operations in Oracle by 5% in time complexity and performed PL/SQL features"
+                    ],
+                    "description": null
+                }]
+            },
+            "examples": [
+                [{
+                    "name": "ICT Infracon",
+                    "endDate": "2018-02-15",
+                    "summary": null,
+                    "location": "Ahmedabad",
+                    "position": "Assistant Software Engineer",
+                    "startDate": "2017-06-15",
+                    "highlights": [
+                        "Demonstrated expertise in Core JAVA, Spring Boot, and Hibernate frameworks, leading to a 20% increase in application efficiency",
+                        "Optimized the database operations in Oracle by 5% in time complexity and performed PL/SQL features"
+                    ],
+                    "description": null
+                }]
+            ]
+        },
+        "education": {
+            "type": "array",
+            "default": [],
+            "title": "The education Schema",
+            "items": {
+                "type": "object",
+                "default": {},
+                "title": "A Schema",
+                "required": [
+                    "area",
+                    "score",
+                    "courses",
+                    "endDate",
+                    "startDate",
+                    "studyType",
+                    "institution"
+                ],
+                "properties": {
+                    "area": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The area Schema",
+                        "examples": [
+                            "Business Analytics and Information Systems(Computer Science/ Computer Engineering)"
+                        ]
+                    },
+                    "score": {
+                        "type": "string",
+                        "default": null,
+                        "title": "The score Schema",
+                        "examples": [
+                            null
+                        ]
+                    },
+                    "courses": {
+                        "type": "array",
+                        "default": [],
+                        "title": "The courses Schema",
+                        "items": {},
+                        "examples": [
+                            []
+                        ]
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The endDate Schema",
+                        "examples": [
+                            "Fri Dec 01 2023"
+                        ]
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "default": null,
+                        "title": "The startDate Schema",
+                        "examples": [
+                            null
+                        ]
+                    },
+                    "studyType": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The studyType Schema",
+                        "examples": [
+                            "Master of Science"
+                        ]
+                    },
+                    "institution": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The institution Schema",
+                        "examples": [
+                            "University of South Florida"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "area": "Business Analytics and Information Systems(Computer Science/ Computer Engineering)",
+                    "score": null,
+                    "courses": [],
+                    "endDate": "Fri Dec 01 2023",
+                    "startDate": null,
+                    "studyType": "Master of Science",
+                    "institution": "University of South Florida"
+                }]
+            },
+            "examples": [
+                [{
+                    "area": "Business Analytics and Information Systems(Computer Science/ Computer Engineering)",
+                    "score": null,
+                    "courses": [],
+                    "endDate": "Fri Dec 01 2023",
+                    "startDate": null,
+                    "studyType": "Master of Science",
+                    "institution": "University of South Florida"
+                }]
+            ]
+        },
+        "volunteer": {
+            "type": "array",
+            "default": [],
+            "title": "The volunteer Schema",
+            "items": {
+                "type": "object",
+                "default": {},
+                "title": "A Schema",
+                "required": [
+                    "endDate",
+                    "summary",
+                    "position",
+                    "startDate",
+                    "highlights",
+                    "organization"
+                ],
+                "properties": {
+                    "endDate": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The endDate Schema",
+                        "examples": [
+                            "2021-09-15"
+                        ]
+                    },
+                    "summary": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The summary Schema",
+                        "examples": [
+                            "Completed administrative functions included volunteering management, outreach, and records management."
+                        ]
+                    },
+                    "position": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The position Schema",
+                        "examples": [
+                            "Disaster Response Admin"
+                        ]
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The startDate Schema",
+                        "examples": [
+                            "2020-09-15"
+                        ]
+                    },
+                    "highlights": {
+                        "type": "array",
+                        "default": [],
+                        "title": "The highlights Schema",
+                        "items": {},
+                        "examples": [
+                            []
+                        ]
+                    },
+                    "organization": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The organization Schema",
+                        "examples": [
+                            "American Red Cross"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "endDate": "2021-09-15",
+                    "summary": "Completed administrative functions included volunteering management, outreach, and records management.",
+                    "position": "Disaster Response Admin",
+                    "startDate": "2020-09-15",
+                    "highlights": [],
+                    "organization": "American Red Cross"
+                }]
+            },
+            "examples": [
+                [{
+                    "endDate": "2021-09-15",
+                    "summary": "Completed administrative functions included volunteering management, outreach, and records management.",
+                    "position": "Disaster Response Admin",
+                    "startDate": "2020-09-15",
+                    "highlights": [],
+                    "organization": "American Red Cross"
+                }]
+            ]
+        },
+        "awards": {
+            "type": "array",
+            "default": [],
+            "title": "The awards Schema",
+            "items": {
+                "type": "object",
+                "default": {},
+                "title": "A Schema",
+                "required": [
+                    "date",
+                    "title",
+                    "awarder",
+                    "summary"
+                ],
+                "properties": {
+                    "date": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The date Schema",
+                        "examples": [
+                            "2024-05-03"
+                        ]
+                    },
+                    "title": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The title Schema",
+                        "examples": [
+                            "Dean's Award for Scholastic Excellence"
+                        ]
+                    },
+                    "awarder": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The awarder Schema",
+                        "examples": [
+                            "Sulin Ba"
+                        ]
+                    },
+                    "summary": {
+                        "type": "string",
+                        "default": null,
+                        "title": "The summary Schema",
+                        "examples": [
+                            null
+                        ]
+                    }
+                },
+                "examples": [{
+                    "date": "2024-05-03",
+                    "title": "Dean's Award for Scholastic Excellence",
+                    "awarder": "Sulin Ba",
+                    "summary": null
+                }]
+            },
+            "examples": [
+                [{
+                    "date": "2024-05-03",
+                    "title": "Dean's Award for Scholastic Excellence",
+                    "awarder": "Sulin Ba",
+                    "summary": null
+                }]
+            ]
+        },
+        "certificates": {
+            "type": "array",
+            "default": [],
+            "title": "The certificates Schema",
+            "items": {
+                "type": "object",
+                "default": {},
+                "title": "A Schema",
+                "required": [
+                    "date",
+                    "name",
+                    "issuer"
+                ],
+                "properties": {
+                    "date": {
+                        "type": "string",
+                        "default": null,
+                        "title": "The date Schema",
+                        "examples": [
+                            null
+                        ]
+                    },
+                    "name": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The name Schema",
+                        "examples": [
+                            "SAFe Agilist (SA)"
+                        ]
+                    },
+                    "issuer": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The issuer Schema",
+                        "examples": [
+                            "SAFe Agilist"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "date": null,
+                    "name": "SAFe Agilist (SA)",
+                    "issuer": "SAFe Agilist"
+                }]
+            },
+            "examples": [
+                [{
+                    "date": null,
+                    "name": "SAFe Agilist (SA)",
+                    "issuer": "SAFe Agilist"
+                }]
+            ]
+        },
+        "publications": {
+            "type": "array",
+            "default": [],
+            "title": "The publications Schema",
+            "items": {
+                "type": "object",
+                "default": {},
+                "title": "A Schema",
+                "required": [
+                    "name",
+                    "summary",
+                    "publisher",
+                    "releaseDate"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The name Schema",
+                        "examples": [
+                            "Diving Deeper"
+                        ]
+                    },
+                    "summary": {
+                        "type": "string",
+                        "default": null,
+                        "title": "The summary Schema",
+                        "examples": [
+                            null
+                        ]
+                    },
+                    "publisher": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The publisher Schema",
+                        "examples": [
+                            "Oregon State University, Geospatial Ecology of Maine Megafauna Lab"
+                        ]
+                    },
+                    "releaseDate": {
+                        "type": "string",
+                        "default": null,
+                        "title": "The releaseDate Schema",
+                        "examples": [
+                            null
+                        ]
+                    }
+                },
+                "examples": [{
+                    "name": "Diving Deeper",
+                    "summary": null,
+                    "publisher": "Oregon State University, Geospatial Ecology of Maine Megafauna Lab",
+                    "releaseDate": null
+                }]
+            },
+            "examples": [
+                [{
+                    "name": "Diving Deeper",
+                    "summary": null,
+                    "publisher": "Oregon State University, Geospatial Ecology of Maine Megafauna Lab",
+                    "releaseDate": null
+                }]
+            ]
+        },
+        "skills": {
+            "type": "array",
+            "default": [],
+            "title": "The skills Schema",
+            "items": {
+                "type": "object",
+                "default": {},
+                "title": "A Schema",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The name Schema",
+                        "examples": [
+                            "• Brand Management"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "name": "• Brand Management"
+                }]
+            },
+            "examples": [
+                [{
+                    "name": "• Brand Management"
+                }]
+            ]
+        },
+        "languages": {
+            "type": "array",
+            "default": [],
+            "title": "The languages Schema",
+            "items": {
+                "type": "object",
+                "title": "A Schema",
+                "required": [
+                    "fluency",
+                    "language"
+                ],
+                "properties": {
+                    "fluency": {
+                        "type": "string",
+                        "title": "The fluency Schema",
+                        "examples": [
+                            "Native",
+                            "Fluent"
+                        ]
+                    },
+                    "language": {
+                        "type": "string",
+                        "title": "The language Schema",
+                        "examples": [
+                            "English",
+                            "Spanish"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "fluency": "Native",
+                    "language": "English"
+                },
+                {
+                    "fluency": "Fluent",
+                    "language": "Spanish"
+                }]
+            },
+            "examples": [
+                [{
+                    "fluency": "Native",
+                    "language": "English"
+                },
+                {
+                    "fluency": "Fluent",
+                    "language": "Spanish"
+                }]
+            ]
+        },
+        "interests": {
+            "type": "array",
+            "default": [],
+            "title": "The interests Schema",
+            "items": {
+                "type": "object",
+                "title": "A Schema",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "The name Schema",
+                        "examples": [
+                            "Hiking",
+                            "Yoga",
+                            "Photography"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "name": "Hiking"
+                },
+                {
+                    "name": "Yoga"
+                },
+                {
+                    "name": "Photography"
+                }]
+            },
+            "examples": [
+                [{
+                    "name": "Hiking"
+                },
+                {
+                    "name": "Yoga"
+                },
+                {
+                    "name": "Photography"
+                }]
+            ]
+        },
+        "references": {
+            "type": "array",
+            "default": [],
+            "title": "The references Schema",
+            "items": {
+                "type": "object",
+                "title": "A Schema",
+                "required": [
+                    "name",
+                    "reference"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "The name Schema",
+                        "examples": [
+                            "Eduardo Donizete",
+                            "Denise Higgins"
+                        ]
+                    },
+                    "reference": {
+                        "type": "string",
+                        "title": "The reference Schema",
+                        "examples": [
+                            "Computer Network Engineer\n0451 310 884\nedonizeti@gmail.com\nIT, Co-worker",
+                            "Office Manager\n0416 035 037\nabasketcase@bigpond.com\nMy Manager"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "name": "Eduardo Donizete",
+                    "reference": "Computer Network Engineer\n0451 310 884\nedonizeti@gmail.com\nIT, Co-worker"
+                },
+                {
+                    "name": "Denise Higgins",
+                    "reference": "Office Manager\n0416 035 037\nabasketcase@bigpond.com\nMy Manager"
+                }]
+            },
+            "examples": [
+                [{
+                    "name": "Eduardo Donizete",
+                    "reference": "Computer Network Engineer\n0451 310 884\nedonizeti@gmail.com\nIT, Co-worker"
+                },
+                {
+                    "name": "Denise Higgins",
+                    "reference": "Office Manager\n0416 035 037\nabasketcase@bigpond.com\nMy Manager"
+                }]
+            ]
+        },
+        "projects": {
+            "type": "array",
+            "default": [],
+            "title": "The projects Schema",
+            "items": {
+                "type": "object",
+                "default": {},
+                "title": "A Schema",
+                "required": [
+                    "name",
+                    "roles",
+                    "endDate",
+                    "startDate",
+                    "highlights",
+                    "description"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The name Schema",
+                        "examples": [
+                            "Significance of IQ in twins"
+                        ]
+                    },
+                    "roles": {
+                        "type": "array",
+                        "default": [],
+                        "title": "The roles Schema",
+                        "items": {},
+                        "examples": [
+                            []
+                        ]
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The endDate Schema",
+                        "examples": [
+                            "Mon May 01 2023"
+                        ]
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "default": null,
+                        "title": "The startDate Schema",
+                        "examples": [
+                            null
+                        ]
+                    },
+                    "highlights": {
+                        "type": "array",
+                        "default": [],
+                        "title": "The highlights Schema",
+                        "items": {},
+                        "examples": [
+                            []
+                        ]
+                    },
+                    "description": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The description Schema",
+                        "examples": [
+                            "•\tDeveloped a machine learning model and processed a large dataset of twins IQ and genetic score.\n•\tUsed feature selection techniques and statistical tests such as Kruskal Anova test, Shapiro test, Z score, and Chi square to identify the most relevant features for modelling.\n•\tEvaluated model performance, and compared results to existing research on the topic"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "name": "Significance of IQ in twins",
+                    "roles": [],
+                    "endDate": "Mon May 01 2023",
+                    "startDate": null,
+                    "highlights": [],
+                    "description": "•\tDeveloped a machine learning model and processed a large dataset of twins IQ and genetic score.\n•\tUsed feature selection techniques and statistical tests such as Kruskal Anova test, Shapiro test, Z score, and Chi square to identify the most relevant features for modelling.\n•\tEvaluated model performance, and compared results to existing research on the topic"
+                }]
+            },
+            "examples": [
+                [{
+                    "name": "Significance of IQ in twins",
+                    "roles": [],
+                    "endDate": "Mon May 01 2023",
+                    "startDate": null,
+                    "highlights": [],
+                    "description": "•\tDeveloped a machine learning model and processed a large dataset of twins IQ and genetic score.\n•\tUsed feature selection techniques and statistical tests such as Kruskal Anova test, Shapiro test, Z score, and Chi square to identify the most relevant features for modelling.\n•\tEvaluated model performance, and compared results to existing research on the topic"
+                }]
+            ]
+        }
+    },
+    "examples": [{
+        "basics": {
+            "name": "John Doe",
+            "email": "john_doe@gmail.com",
+            "label": "Manager - Donations \u0026 Sponsorships",
+            "phone": "514260-6137",
+            "summary": "Experienced marketing brand manager who has worked for global leaders in the aviation industry. Managed the strategic planning and budget for brand awareness activities on an international scale. Organized events of varying sizes that targeted both internal and external customers. Developed traditional advertising and digital marketing campaigns in support of brand strategy. Collaborated effectively with marketing, sales, and other teams to achieve corporate objectives. Optimized sponsorship opportunities by continuously seeking out promotional initiatives. Managed agency and vendor relationships. Created management tools, dashboards, and performance indicators (KPIs) . Delivered numerous projects by demonstrating innovative project management and problem-solving skills, creativity, and the ability to meet tight deadlines while maintaining respectful and professional relationships.",
+            "location": {
+                "city": "Lachine",
+                "region": "Quebec",
+                "address": "123, 2nd Avenue Lachine",
+                "postalCode": "H8T 2H7",
+                "countryCode": "Canada"
+            },
+            "profiles": [{
+                "network": "Linkedin",
+                "username": null
+            }]
+        },
+        "work": [{
+            "name": "ICT Infracon",
+            "endDate": "2018-02-15",
+            "summary": null,
+            "location": "Ahmedabad",
+            "position": "Assistant Software Engineer",
+            "startDate": "2017-06-15",
+            "highlights": [
+                "Demonstrated expertise in Core JAVA, Spring Boot, and Hibernate frameworks, leading to a 20% increase in application efficiency",
+                "Optimized the database operations in Oracle by 5% in time complexity and performed PL/SQL features"
+            ],
+            "description": null
+        }],
+        "education": [{
+            "area": "Business Analytics and Information Systems(Computer Science/ Computer Engineering)",
+            "score": null,
+            "courses": [],
+            "endDate": "Fri Dec 01 2023",
+            "startDate": null,
+            "studyType": "Master of Science",
+            "institution": "University of South Florida"
+        }],
+        "volunteer": [{
+            "endDate": "2021-09-15",
+            "summary": "Completed administrative functions included volunteering management, outreach, and records management.",
+            "position": "Disaster Response Admin",
+            "startDate": "2020-09-15",
+            "highlights": [],
+            "organization": "American Red Cross"
+        }],
+        "awards": [{
+            "date": "2024-05-03",
+            "title": "Dean's Award for Scholastic Excellence",
+            "awarder": "Sulin Ba",
+            "summary": null
+        }],
+        "certificates": [{
+            "date": null,
+            "name": "SAFe Agilist (SA)",
+            "issuer": "SAFe Agilist"
+        }],
+        "publications": [{
+            "name": "Diving Deeper",
+            "summary": null,
+            "publisher": "Oregon State University, Geospatial Ecology of Maine Megafauna Lab",
+            "releaseDate": null
+        }],
+        "skills": [{
+            "name": "• Brand Management"
+        }],
+        "languages": [{
+            "fluency": "Native",
+            "language": "English"
+        },
+        {
+            "fluency": "Fluent",
+            "language": "Spanish"
+        }],
+        "interests": [{
+            "name": "Hiking"
+        },
+        {
+            "name": "Yoga"
+        },
+        {
+            "name": "Photography"
+        }],
+        "references": [{
+            "name": "Eduardo Donizete",
+            "reference": "Computer Network Engineer\n0451 310 884\nedonizeti@gmail.com\nIT, Co-worker"
+        },
+        {
+            "name": "Denise Higgins",
+            "reference": "Office Manager\n0416 035 037\nabasketcase@bigpond.com\nMy Manager"
+        }],
+        "projects": [{
+            "name": "Significance of IQ in twins",
+            "roles": [],
+            "endDate": "Mon May 01 2023",
+            "startDate": null,
+            "highlights": [],
+            "description": "•\tDeveloped a machine learning model and processed a large dataset of twins IQ and genetic score.\n•\tUsed feature selection techniques and statistical tests such as Kruskal Anova test, Shapiro test, Z score, and Chi square to identify the most relevant features for modelling.\n•\tEvaluated model performance, and compared results to existing research on the topic"
+        }]
+    }]
+}
