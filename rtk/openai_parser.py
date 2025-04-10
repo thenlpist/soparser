@@ -34,10 +34,10 @@ logger.info(f"file_logger value: {file_logger}")
 class OAiParser:
     OPENAI_PARSER_NAME = "openai"
 
-    def __init__(self):
+    def __init__(self, openai_key):
         self.validate = Validation()
         self.model = "gpt-4o-2024-08-06"
-        openai_key = os.environ.get("OPENAI_API_KEY", None)
+        openai_key = openai_key if openai_key else os.environ.get("OPENAI_API_KEY", None)
         if not openai_key:
             logger.error("API_KEY_NOT_DEFINED: OpenAI API key is not defined as an environment variable")
         self.client = OpenAI(api_key=openai_key)
