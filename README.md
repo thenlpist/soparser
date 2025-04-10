@@ -29,9 +29,13 @@ e.g.
 
 ## How to use
 
-import 
+import
+
 ```python
-from rtk.openai_parser import Parser
-parser = Parser()
+# from rtk.openai_parser import Parser
+from rtk import OAiParser
+text = "..."
+parser = OAiParser()
 parser.parse_standalone(text)
 ```
+

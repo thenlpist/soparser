@@ -31,7 +31,7 @@ logger.addHandler(sh)
 logger.info(f"file_logger value: {file_logger}")
 
 
-class Parser:
+class OAiParser:
     OPENAI_PARSER_NAME = "openai"
 
     def __init__(self):
@@ -98,7 +98,7 @@ class Parser:
 
 
 def main(text):
-    parser = Parser()
+    parser = OAiParser()
     response = parser.parse_standalone(text)
     print(json.dumps(response, indent=2))
 
