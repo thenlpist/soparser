@@ -50,8 +50,12 @@ class OAiParser:
         num_chars = len(text)
 
         valid_json, valid_json_resume = self.validate.validate_json_w_pydantic(resume)
+        try:
+            name = resume["basics"]["name"]
+        except:
+            name = ""
         logger.info(
-            f"parser: {self.OPENAI_PARSER_NAME}, valid_json: {valid_json}, valid_jsonresume: {valid_json_resume}, num_chars: {num_chars}, num_tokens: {num_tokens}, generation_time: {generation_time} ")
+            f"name: `{name}`,  parser: {self.OPENAI_PARSER_NAME}, valid_json: {valid_json}, valid_jsonresume: {valid_json_resume}, num_chars: {num_chars}, num_tokens: {num_tokens}, generation_time: {generation_time} ")
 
         return {
             "parser": self.OPENAI_PARSER_NAME,
@@ -60,8 +64,7 @@ class OAiParser:
             "generation_time": generation_time,
             "num_chars": num_chars,
             "num_tokens": num_tokens,
-            "jsonresume": resume,
-
+            "jsonresume": resume
         }
 
     def parse_standalone(self, text):
