@@ -7,14 +7,6 @@ from pydantic import BaseModel, Field, ConfigDict
 # ----------------------------------------------------------------------------------------------------------------------
 # Awards
 # ----------------------------------------------------------------------------------------------------------------------
-# class Award(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     title: str
-#     date: Optional[str]
-#     awarder: Optional[str]
-#     summary: Optional[str]
-
 class Award(BaseModel):
     model_config = ConfigDict(strict=True)
 
@@ -27,13 +19,6 @@ class Award(BaseModel):
 # ----------------------------------------------------------------------------------------------------------------------
 # Basics
 # ----------------------------------------------------------------------------------------------------------------------
-# class Profile(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     url: str
-#     username: Optional[str]
-#     network: Optional[str]
-
 class Profile(BaseModel):
     model_config = ConfigDict(strict=True)
 
@@ -43,38 +28,16 @@ class Profile(BaseModel):
                                    description="The internet website or community on which a person has a profile.")
 
 
-# class Location(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     city: str
-#     address: Optional[str]
-#     region: Optional[str]
-#     countrycode: Optional[str]
-#     postalcode: Optional[str]
-
 class Location(BaseModel):
     model_config = ConfigDict(strict=True)
 
-    city: str = Field(..., title="City", description="A city name.")
     address: Optional[str] = Field(title="Address", description="A street address.")
+    city: str = Field(..., title="City", description="A city name.")
     region: Optional[str] = Field(title="Region",
                                   description="The state, province or region in component of an address.")
     countrycode: Optional[str] = Field(title="Country Code", description="A two letter code for a country.")
     postalcode: Optional[str] = Field(title="Postal Code", description="A postal code, zip code or similar.")
 
-
-# class Basics(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     name: str
-#     label: Optional[str]
-#     website: Optional[str]
-#     email: Optional[str]
-#     phone: Optional[str]
-#     summary: Optional[str]
-#     url: Optional[str]
-#     profiles: Optional[list[Profile]]
-#     location: Optional[Location]
 
 class Basics(BaseModel):
     model_config = ConfigDict(strict=True)
@@ -82,11 +45,10 @@ class Basics(BaseModel):
     name: str = Field(..., title="Name", description="A person's full name.")
     label: Optional[str] = Field(title="Label",
                                  description="A job title that summarizes or describes an individual's career.")
-    website: Optional[str] = Field(title="Website", description="The URL for a personal website.")
     email: Optional[str] = Field(title="Email", description="An email address.")
     phone: Optional[str] = Field(title="Phone", description="A phone number.")
-    summary: Optional[str] = Field(title="Summary", description="A career summary found in a resume..")
     url: Optional[str] = Field(title="URL", description="A URL for any additional website.")
+    summary: Optional[str] = Field(title="Summary", description="A career summary found in a resume..")
     profiles: Optional[list[Profile]]
     location: Optional[Location]
 
@@ -94,14 +56,6 @@ class Basics(BaseModel):
 # ----------------------------------------------------------------------------------------------------------------------
 # Certificates
 # ----------------------------------------------------------------------------------------------------------------------
-# class Certificate(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     name: str
-#     date: Optional[str]
-#     url: Optional[str]
-#     issuer: Optional[str]
-
 class Certificate(BaseModel):
     model_config = ConfigDict(strict=True)
 
@@ -115,17 +69,6 @@ class Certificate(BaseModel):
 # ----------------------------------------------------------------------------------------------------------------------
 # Education
 # ----------------------------------------------------------------------------------------------------------------------
-# class Education(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     institution: str
-#     area: Optional[str]
-#     studytype: Optional[str]
-#     startdate: Optional[str]
-#     enddate: Optional[str]
-#     url: Optional[str]
-#     score: Optional[str]
-
 
 class Education(BaseModel):
     model_config = ConfigDict(strict=True)
@@ -144,15 +87,6 @@ class Education(BaseModel):
 # ----------------------------------------------------------------------------------------------------------------------
 # Interests
 # ----------------------------------------------------------------------------------------------------------------------
-# class Interest(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     name: str
-#
-#     def prerender(self):
-#         return self.name
-
-
 class Interest(BaseModel):
     model_config = ConfigDict(strict=True)
 
@@ -165,18 +99,6 @@ class Interest(BaseModel):
 # ----------------------------------------------------------------------------------------------------------------------
 # Languages
 # ----------------------------------------------------------------------------------------------------------------------
-# class Language(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     language: str
-#     fluency: Optional[str]
-#
-#     def prerender(self, key_order):
-#         result = []
-#         for k in key_order:
-#             result.append(self.__getattribute__(k))
-#         return f": ".join(result)
-
 class Language(BaseModel):
     model_config = ConfigDict(strict=True)
 
@@ -194,16 +116,6 @@ class Language(BaseModel):
 # ----------------------------------------------------------------------------------------------------------------------
 # Projects
 # ----------------------------------------------------------------------------------------------------------------------
-# class Project(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     name: str
-#     enddate: Optional[str]
-#     startdate: Optional[str]
-#     description: Optional[str]
-#     highlights: Optional[list[str]]
-#     url: Optional[str]
-
 class Project(BaseModel):
     model_config = ConfigDict(strict=True)
 
@@ -215,21 +127,13 @@ class Project(BaseModel):
     highlights: Optional[list[str]] = Field(title="Highlights",
                                             description="A list of bullet points detailing highlights of a project.")
     url: Optional[str] = Field(title="URL", description="A URL for a given project.")
+    roles: Optional[list[str]] = Field(title="Roles",
+                                            description="A list positions or roles a person had on a given project.")
 
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Publications
 # ----------------------------------------------------------------------------------------------------------------------
-# class Publication(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     name: str
-#     publisher: Optional[str]
-#     summary: Optional[str]
-#     releasedate: Optional[str]
-#     url: Optional[str]
-
-
 class Publication(BaseModel):
     model_config = ConfigDict(strict=True)
 
@@ -244,12 +148,6 @@ class Publication(BaseModel):
 # ----------------------------------------------------------------------------------------------------------------------
 # References
 # ----------------------------------------------------------------------------------------------------------------------
-# class Reference(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     name: str
-#     reference: Optional[str]
-
 
 class Reference(BaseModel):
     model_config = ConfigDict(strict=True)
@@ -261,14 +159,6 @@ class Reference(BaseModel):
 # ----------------------------------------------------------------------------------------------------------------------
 # Skills
 # ----------------------------------------------------------------------------------------------------------------------
-# class Skill(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     name: str
-#     level: Optional[str]
-#     keywords: Optional[list[str]]
-
-
 class Skill(BaseModel):
     model_config = ConfigDict(strict=True)
 
@@ -281,25 +171,13 @@ class Skill(BaseModel):
 # ----------------------------------------------------------------------------------------------------------------------
 # Volunteer
 # ----------------------------------------------------------------------------------------------------------------------
-# class Volunteer(BaseModel):
-#     model_config = ConfigDict(strict=True)
-#
-#     organization: str
-#     enddate: Optional[str]
-#     startdate: Optional[str]
-#     position: Optional[str]
-#     summary: Optional[str]
-#     highlights: Optional[list[str]]
-#     url: Optional[str]
-
-
 class Volunteer(BaseModel):
     model_config = ConfigDict(strict=True)
 
     organization: str = Field(..., title="Organization",
                               description="The name of an organization one volunteered with.")
-    enddate: Optional[str] = Field(title="End date", description="The date on which a volunteer work ended.")
     startdate: Optional[str] = Field(title="Start date", description="The date on which volunteer work started.")
+    enddate: Optional[str] = Field(title="End date", description="The date on which a volunteer work ended.")
     position: Optional[str] = Field(title="Position", description="The name or title of a volunteer position.")
     summary: Optional[str] = Field(title="Summary", description="A summary or narrative description of volunteer work.")
     highlights: Optional[list[str]] = Field(title="Highlights",
@@ -310,20 +188,6 @@ class Volunteer(BaseModel):
 # ----------------------------------------------------------------------------------------------------------------------
 # Work
 # ----------------------------------------------------------------------------------------------------------------------
-# class Work(BaseModel):
-#     model_config = ConfigDict(strict=False)
-#
-#     position: str
-#     name: str
-#     location: Optional[str]
-#     description: Optional[str]
-#     enddate: Optional[str]
-#     startdate: Optional[str]
-#     summary: Optional[str]
-#     highlights: Optional[list[str]]
-#     url: Optional[str]
-
-
 class Work(BaseModel):
     model_config = ConfigDict(strict=False)
 
@@ -332,8 +196,9 @@ class Work(BaseModel):
     location: Optional[str] = Field(title="Location", description="The location of a given company or organization.")
     description: Optional[str] = Field(title="Description",
                                        description="A brief description of a company or organization one worked for.")
-    enddate: Optional[str] = Field(title="End date", description="The date on which a work experience ended.")
     startdate: Optional[str] = Field(title="Start date", description="The date on which a work experience started.")
+    enddate: Optional[str] = Field(title="End date", description="The date on which a work experience ended.")
+
     summary: Optional[str] = Field(title="Summary", description="A summary or narrative description of volunteer work.")
     highlights: Optional[list[str]] = Field(title="Highlights",
                                             description="A list of bullet points detailing highlights of a given work experience.")

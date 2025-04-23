@@ -19,13 +19,13 @@ formatter = logging.Formatter("%(asctime)s: %(levelname)s: %(message)s")
 sh.setFormatter(formatter)
 
 file_logger = bool(os.environ.get("FILE_LOGGER", False))
-if file_logger:
-    os.makedirs("LOGS", exist_ok=True)
-    # Set up file handler
-    LOGFILE = "LOGS/resume_parser.log"
-    fh = handlers.RotatingFileHandler(LOGFILE, maxBytes=100000, backupCount=10)
-    fh.setFormatter(formatter)
-    logger.addHandler(fh)
+# if file_logger:
+#     os.makedirs("LOGS", exist_ok=True)
+#     # Set up file handler
+#     LOGFILE = "LOGS/resume_parser.log"
+#     fh = handlers.RotatingFileHandler(LOGFILE, maxBytes=100000, backupCount=10)
+#     fh.setFormatter(formatter)
+#     logger.addHandler(fh)
 logger.addHandler(sh)
 
 logger.info(f"file_logger value: {file_logger}")
