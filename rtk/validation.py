@@ -19,7 +19,7 @@ sh.setLevel(logging.INFO)
 formatter = logging.Formatter("%(asctime)s: %(levelname)s: %(message)s")
 sh.setFormatter(formatter)
 
-file_logger = bool(os.environ.get("FILE_LOGGER", False))
+# file_logger = bool(os.environ.get("FILE_LOGGER", False))
 # if file_logger:
 #     # Set up file handler
 #     LOGFILE = "LOGS/resume_parser.log"
