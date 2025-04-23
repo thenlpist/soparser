@@ -28,7 +28,7 @@ file_logger = bool(os.environ.get("FILE_LOGGER", False))
 #     logger.addHandler(fh)
 logger.addHandler(sh)
 
-logger.info(f"file_logger value: {file_logger}")
+logger.info(f"rtk file_logger value: {file_logger}")
 
 
 class OAiParser:
