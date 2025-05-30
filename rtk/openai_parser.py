@@ -1,9 +1,8 @@
-from pathlib import Path
 import json
 import logging
 import os
 import time
-from logging import handlers
+from pathlib import Path
 
 from openai import OpenAI
 
@@ -28,6 +27,7 @@ sh.setFormatter(formatter)
 #     logger.addHandler(fh)
 logger.addHandler(sh)
 
+
 # logger.info(f"rtk file_logger value: {file_logger}")
 
 
@@ -38,12 +38,17 @@ class OAiParser:
         self.validate = Validation()
         self.model = "gpt-4o-2024-08-06"
         openai_key = openai_key if openai_key else os.environ.get("OPENAI_API_KEY", None)
+        self.openai_is_available = True
         if not openai_key:
             logger.error("API_KEY_NOT_DEFINED: OpenAI API key is not defined as an environment variable")
+            self.openai_is_available = False
         self.client = OpenAI(api_key=openai_key)
         self.serializer = ResumeSerializer()
 
     def parse(self, text):
+        if self.openai_is_available == False:
+            logger.error("OpenAI is unavailable")
+            return {"parser": "None", "jsonresume": {}}
         logger.info("Calling OpenAI parser...")
         resume, prompt_tokens, completion_tokens, generation_time = self._query_openai(text)
         num_tokens = prompt_tokens + completion_tokens
@@ -108,6 +113,7 @@ def main(text):
 
 if __name__ == "__main__":
     from dotenv import load_dotenv
+
     load_dotenv()
     home = Path.home()
     data_dir = home.joinpath("Data/Jobscan/Resumes/2_Annotation/20250326_Resume_labeling/Resumes_to_label")
