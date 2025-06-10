@@ -81,6 +81,19 @@ class OAiParser:
     def _query_openai(self, text):
         t1 = time.time()
         try:
+            resume_obj, prompt_tokens, completion_tokens = self._get_completion(text)
+            resume = self.serializer.to_json_resume(resume_obj)
+        except Exception as e:
+            logger.error(f"Error encountered while parsing OpenAI response: {e}")
+            resume = {}
+            prompt_tokens = 0
+            completion_tokens = 0
+        t2 = time.time()
+        generation_time = t2 - t1
+        return resume, prompt_tokens, completion_tokens, generation_time
+
+    def _get_completion(self, text):
+        try:
             completion = self.client.beta.chat.completions.parse(
                 model=self.model,
                 messages=[
@@ -94,16 +107,10 @@ class OAiParser:
             prompt_tokens = completion.usage.prompt_tokens
             completion_tokens = completion.usage.completion_tokens
             logger.info(f"prompt_tokens: {prompt_tokens}  completion_tokens: {completion_tokens}")
-            resume = self.serializer.to_json_resume(resume_obj)
-        except:
-            logger.error("Error encountered while parsing OpenAI response")
-            resume = {}
-            prompt_tokens = 0
-            completion_tokens = 0
-        t2 = time.time()
-        generation_time = t2 - t1
-        return resume, prompt_tokens, completion_tokens, generation_time
-
+            return resume_obj, prompt_tokens, completion_tokens
+        except Exception as e:
+            logger.error(f"StructuredOutputs Exception: {e}")
+            return None, 0, 0
 
 def main(text):
     parser = OAiParser()
