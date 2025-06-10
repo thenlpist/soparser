@@ -26,6 +26,8 @@ aws_sync_2/
 *.xlsx
 
 
+!jsonresume_schema.json
+
 *.zip
 models/
 t5_models/
