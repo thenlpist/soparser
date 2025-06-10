@@ -34,8 +34,8 @@ class OAiParser:
 
     def parse(self, text):
         if self.openai_is_available == False:
-            logger.error("OpenAI is unavailable")
-            return {"parser": "None", "jsonresume": {}}
+            logger.error("OpenAI Key is not defined")
+            return {"parser": "Failure", "jsonresume": {}}
         logger.info("Calling OpenAI parser...")
         resume, prompt_tokens, completion_tokens, generation_time = self._query_openai(text)
         num_tokens = prompt_tokens + completion_tokens
@@ -69,6 +69,7 @@ class OAiParser:
         t1 = time.time()
         try:
             resume_obj, prompt_tokens, completion_tokens = self._get_completion(text)
+            logger.info("Serializing response...")
             resume = self.serializer.to_json_resume(resume_obj)
         except Exception as e:
             logger.error(f"Error encountered while parsing OpenAI response: {e}")
