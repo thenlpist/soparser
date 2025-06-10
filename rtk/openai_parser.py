@@ -16,20 +16,7 @@ sh = logging.StreamHandler()
 sh.setLevel(logging.INFO)
 formatter = logging.Formatter("%(asctime)s: %(levelname)s: %(message)s")
 sh.setFormatter(formatter)
-
-# file_logger = bool(os.environ.get("FILE_LOGGER", False))
-# if fFILE_LOGGERile_logger:
-#     os.makedirs("LOGS", exist_ok=True)
-#     # Set up file handler
-#     LOGFILE = "LOGS/resume_parser.log"
-#     fh = handlers.RotatingFileHandler(LOGFILE, maxBytes=100000, backupCount=10)
-#     fh.setFormatter(formatter)
-#     logger.addHandler(fh)
 logger.addHandler(sh)
-
-
-# logger.info(f"rtk file_logger value: {file_logger}")
-
 
 class OAiParser:
     OPENAI_PARSER_NAME = "openai"
@@ -106,24 +93,24 @@ class OAiParser:
             resume_obj = completion.choices[0].message.parsed
             prompt_tokens = completion.usage.prompt_tokens
             completion_tokens = completion.usage.completion_tokens
-            logger.info(f"prompt_tokens: {prompt_tokens}  completion_tokens: {completion_tokens}")
+            logger.info(f"OpenAI-Usage => prompt_tokens: {prompt_tokens}  completion_tokens: {completion_tokens}")
             return resume_obj, prompt_tokens, completion_tokens
         except Exception as e:
             logger.error(f"StructuredOutputs Exception: {e}")
             return None, 0, 0
 
-def main(text):
-    parser = OAiParser()
-    response = parser.parse_standalone(text)
-    print(json.dumps(response, indent=2))
-
-
-if __name__ == "__main__":
-    from dotenv import load_dotenv
-
-    load_dotenv()
-    home = Path.home()
-    data_dir = home.joinpath("Data/Jobscan/Resumes/2_Annotation/20250326_Resume_labeling/Resumes_to_label")
-    # text = open(data_dir.joinpath("4587062.txt")).read()
-    text = open(data_dir.joinpath("4590187.txt")).read()
-    main(text)
+# def main(text):
+#     parser = OAiParser()
+#     response = parser.parse_standalone(text)
+#     print(json.dumps(response, indent=2))
+#
+#
+# if __name__ == "__main__":
+#     from dotenv import load_dotenv
+#
+#     load_dotenv()
+#     home = Path.home()
+#     data_dir = home.joinpath("Data/Jobscan/Resumes/2_Annotation/20250326_Resume_labeling/Resumes_to_label")
+#     # text = open(data_dir.joinpath("4587062.txt")).read()
+#     text = open(data_dir.joinpath("4590187.txt")).read()
+#     main(text)
