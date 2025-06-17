@@ -1,3 +1,5 @@
+import random
+from typing import Optional
 import logging
 import os
 import time
@@ -21,7 +23,8 @@ class OAiParser:
     OPENAI_PARSER_NAME = "openai"
     OPENAI_FAIL_NAME = "openai-error"
 
-    def __init__(self, openai_key):
+    def __init__(self, openai_key, config: Optional[dict]):
+        self.config = config
         self.validate = Validation()
         self.model = "gpt-4o-2024-08-06"
         openai_key = openai_key if openai_key else os.environ.get("OPENAI_API_KEY", None)
@@ -39,7 +42,8 @@ class OAiParser:
                     "is_valid_json": False,
                     "is_valid_jsonresume": False,
                     "jsonresume": {}}
-        logger.info(f"Calling OpenAI parser for text: {text[:100]}...")
+        head = text[:100].replace("\n", " ")
+        logger.info(f"Calling OpenAI parser for text: {head}...")
         resume, prompt_tokens, completion_tokens, generation_time = self._query_openai(text)
         num_tokens = prompt_tokens + completion_tokens
         num_chars = len(text)
@@ -63,10 +67,31 @@ class OAiParser:
         }
 
     def parse_standalone(self, text):
+        text = self._perturb_text(text)
         response = self.parse(text)
         response, statuscode = self.validate.compute_statuscode(response)
         response["statuscode"] = statuscode
         return response
+
+    def _perturb_text(self, text):
+        if self.config.get("test", False):
+            if random.random() < 0.5:
+                logger.debug("Perturb 1")
+                text = text[:3000]
+            elif random.random() < 0.3:
+                logger.debug("Perturb 2")
+                text = text.replace("\n", " ")
+            elif random.random() < 0.3:
+                logger.debug("Perturb 3")
+                items = text.split("\n")
+                num_items = len(items)
+                third = int(num_items / 3) * 2
+                start = items[:third]
+                end = items[third:]
+                random.shuffle(end)
+                new_items = start + end
+                return "\n".join(new_items)
+        return text
 
     def _validate_key(self):
         if self.openai_is_available == False:
