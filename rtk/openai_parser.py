@@ -18,6 +18,7 @@ formatter = logging.Formatter("%(asctime)s: %(levelname)s: %(message)s")
 sh.setFormatter(formatter)
 logger.addHandler(sh)
 
+
 class OAiParser:
     OPENAI_PARSER_NAME = "openai"
 
@@ -35,7 +36,8 @@ class OAiParser:
     def parse(self, text):
         if self.openai_is_available == False:
             logger.error("OpenAI Key is not defined")
-            return {"parser": "Failure", "jsonresume": {}}
+            return {"parser": "Failure", "is_valid_json": False,
+                    "is_valid_jsonresume": False, "jsonresume": {}}
         logger.info("Calling OpenAI parser...")
         resume, prompt_tokens, completion_tokens, generation_time = self._query_openai(text)
         num_tokens = prompt_tokens + completion_tokens
