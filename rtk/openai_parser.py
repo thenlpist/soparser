@@ -27,14 +27,14 @@ class OAiParser:
         self.config = config
         test = self.config.get("test")
         logger.info("-" * 80)
-        logger.info(f"OAiParser config.test: {test}")
+        logger.info(f"(OAiParser) config.test: {test}")
         logger.info("-"*80)
         self.validate = Validation()
         self.model = "gpt-4o-2024-08-06"
         openai_key = openai_key if openai_key else os.environ.get("OPENAI_API_KEY", None)
         self.openai_is_available = True
         if not openai_key:
-            logger.error("API_KEY_NOT_DEFINED: OpenAI API key is not defined as an environment variable")
+            logger.error("(OAiParser) OpenAI API key is not defined as an environment variable")
             self.openai_is_available = False
         self.client = OpenAI(api_key=openai_key)
         self.serializer = ResumeSerializer()
@@ -78,7 +78,9 @@ class OAiParser:
         return response
 
     def _perturb_text(self, text):
-        if self.config.get("test", False):
+        time.sleep(3)
+        if self.config.get("test", True):
+            logger.debug("(OAiParser) perturbation")
             if random.random() < 0.5:
                 logger.debug("Perturb 1")
                 text = text[:3000]
@@ -107,10 +109,10 @@ class OAiParser:
         t1 = time.time()
         try:
             resume_obj, prompt_tokens, completion_tokens = self._get_completion(text)
-            logger.info("Serializing response...")
+            logger.info("(OAiParser) Serializing response...")
             resume = self.serializer.to_json_resume(resume_obj)
         except Exception as e:
-            logger.error(f"Error encountered while parsing OpenAI response: {e}")
+            logger.error(f"(OAiParser) Error encountered while parsing OpenAI response: {e}")
             resume = {}
             prompt_tokens = 0
             completion_tokens = 0
@@ -132,8 +134,8 @@ class OAiParser:
             resume_obj = completion.choices[0].message.parsed
             prompt_tokens = completion.usage.prompt_tokens
             completion_tokens = completion.usage.completion_tokens
-            logger.info(f"OpenAI-Usage => prompt_tokens: {prompt_tokens}  completion_tokens: {completion_tokens}")
+            logger.info(f"(OAiParser) OpenAI-Usage => prompt_tokens: {prompt_tokens}  completion_tokens: {completion_tokens}")
             return resume_obj, prompt_tokens, completion_tokens
         except Exception as e:
-            logger.error(f"StructuredOutputs Exception: {e}")
+            logger.error(f"(OAiParser) StructuredOutputs Exception: {e}")
             return None, 0, 0
