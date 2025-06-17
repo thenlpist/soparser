@@ -1,8 +1,6 @@
-import json
 import logging
 import os
 import time
-from pathlib import Path
 
 from openai import OpenAI
 
@@ -21,6 +19,7 @@ logger.addHandler(sh)
 
 class OAiParser:
     OPENAI_PARSER_NAME = "openai"
+    OPENAI_FAIL_NAME = "openai-error"
 
     def __init__(self, openai_key):
         self.validate = Validation()
@@ -34,15 +33,17 @@ class OAiParser:
         self.serializer = ResumeSerializer()
 
     def parse(self, text):
-        if self.openai_is_available == False:
-            logger.error("OpenAI Key is not defined")
-            return {"parser": "Failure", "is_valid_json": False,
-                    "is_valid_jsonresume": False, "jsonresume": {}}
-        logger.info("Calling OpenAI parser...")
+        valid_key = self._validate_key()
+        if not valid_key:
+            return {"parser": self.OPENAI_FAIL_NAME,
+                    "is_valid_json": False,
+                    "is_valid_jsonresume": False,
+                    "jsonresume": {}}
+        logger.info(f"Calling OpenAI parser for text: {text[:100]}...")
         resume, prompt_tokens, completion_tokens, generation_time = self._query_openai(text)
         num_tokens = prompt_tokens + completion_tokens
         num_chars = len(text)
-
+        logger.debug("Validating returned object...")
         valid_json, valid_json_resume = self.validate.validate_json_w_pydantic(resume)
         try:
             name = resume["basics"]["name"]
@@ -66,6 +67,12 @@ class OAiParser:
         response, statuscode = self.validate.compute_statuscode(response)
         response["statuscode"] = statuscode
         return response
+
+    def _validate_key(self):
+        if self.openai_is_available == False:
+            logger.error("(OAiParser) OpenAI Key is not defined")
+            return False
+        return True
 
     def _query_openai(self, text):
         t1 = time.time()
@@ -101,19 +108,3 @@ class OAiParser:
         except Exception as e:
             logger.error(f"StructuredOutputs Exception: {e}")
             return None, 0, 0
-
-# def main(text):
-#     parser = OAiParser()
-#     response = parser.parse_standalone(text)
-#     print(json.dumps(response, indent=2))
-#
-#
-# if __name__ == "__main__":
-#     from dotenv import load_dotenv
-#
-#     load_dotenv()
-#     home = Path.home()
-#     data_dir = home.joinpath("Data/Jobscan/Resumes/2_Annotation/20250326_Resume_labeling/Resumes_to_label")
-#     # text = open(data_dir.joinpath("4587062.txt")).read()
-#     text = open(data_dir.joinpath("4590187.txt")).read()
-#     main(text)
