@@ -25,6 +25,10 @@ class OAiParser:
 
     def __init__(self, openai_key, config: Optional[dict]):
         self.config = config
+        test = self.config.get("test")
+        logger.info("-" * 80)
+        logger.info(f"OAiParser config.test: {test}")
+        logger.info("-"*80)
         self.validate = Validation()
         self.model = "gpt-4o-2024-08-06"
         openai_key = openai_key if openai_key else os.environ.get("OPENAI_API_KEY", None)
