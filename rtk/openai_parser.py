@@ -10,10 +10,10 @@ from rtk.resume_dataclass import Resume, ResumeSerializer
 from rtk.validation import Validation
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 # create file handler that logs debug and higher level messages
 sh = logging.StreamHandler()
-sh.setLevel(logging.INFO)
+sh.setLevel(logging.DEBUG)
 formatter = logging.Formatter("%(asctime)s: %(levelname)s: %(message)s")
 sh.setFormatter(formatter)
 logger.addHandler(sh)
