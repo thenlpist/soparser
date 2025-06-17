@@ -80,7 +80,6 @@ class OAiParser:
     def _perturb_text(self, text):
         time.sleep(3)
         if self.test:
-            logger.info("(OAiParser) perturbation")
             logger.debug("(OAiParser) perturbation")
             if random.random() < 0.5:
                 logger.debug("Perturb 1")
