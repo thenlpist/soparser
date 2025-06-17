@@ -25,9 +25,9 @@ class OAiParser:
 
     def __init__(self, openai_key, config: Optional[dict]):
         self.config = config
-        test = self.config.get("test")
+        self.test = bool(self.config.get("test"))
         logger.info("-" * 80)
-        logger.info(f"(OAiParser) config.test: {test}")
+        logger.info(f"(OAiParser) config.test: {self.test}")
         logger.info("-"*80)
         self.validate = Validation()
         self.model = "gpt-4o-2024-08-06"
@@ -47,7 +47,7 @@ class OAiParser:
                     "is_valid_jsonresume": False,
                     "jsonresume": {}}
         head = text[:100].replace("\n", " ")
-        logger.info(f"Calling OpenAI parser for text: {head}...")
+        logger.info(f"(OAiParser) Calling OpenAI parser for text: {head}...")
         resume, prompt_tokens, completion_tokens, generation_time = self._query_openai(text)
         num_tokens = prompt_tokens + completion_tokens
         num_chars = len(text)
@@ -79,7 +79,8 @@ class OAiParser:
 
     def _perturb_text(self, text):
         time.sleep(3)
-        if self.config.get("test", True):
+        if self.test:
+            logger.info("(OAiParser) perturbation")
             logger.debug("(OAiParser) perturbation")
             if random.random() < 0.5:
                 logger.debug("Perturb 1")
