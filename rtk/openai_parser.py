@@ -71,24 +71,25 @@ class OAiParser:
         }
 
     def parse_standalone(self, text):
-        text = self._perturb_text(text)
+        text, var = self._perturb_text(text)
         response = self.parse(text)
         response, statuscode = self.validate.compute_statuscode(response)
         response["statuscode"] = statuscode
+        response["var"] = var
         return response
 
     def _perturb_text(self, text):
         time.sleep(3)
+        var = ""
         if self.test:
             logger.debug("(OAiParser) perturbation")
-            if random.random() < 0.5:
+            if random.random() < 0.3:
+                var = "p1"
                 logger.debug("Perturb 1")
-                text = text[:3000]
+                text = text[:4000]
             elif random.random() < 0.3:
+                var = "p2"
                 logger.debug("Perturb 2")
-                text = text.replace("\n", " ")
-            elif random.random() < 0.3:
-                logger.debug("Perturb 3")
                 items = text.split("\n")
                 num_items = len(items)
                 third = int(num_items / 3) * 2
@@ -97,7 +98,11 @@ class OAiParser:
                 random.shuffle(end)
                 new_items = start + end
                 return "\n".join(new_items)
-        return text
+            elif random.random() < 0.3:
+                var = "p3"
+                logger.debug("Perturb 3")
+                text = text.replace("\n", " ")
+        return text, var
 
     def _validate_key(self):
         if self.openai_is_available == False:
