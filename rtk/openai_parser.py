@@ -39,6 +39,7 @@ class OAiParser:
             self.openai_is_available = False
         self.client = OpenAI(api_key=openai_key)
         self.serializer = ResumeSerializer()
+        self.var = ""
         self.version_string = importlib.metadata.version("rtk")
 
     def parse(self, text):
@@ -70,7 +71,7 @@ class OAiParser:
             "num_chars": num_chars,
             "num_tokens": num_tokens,
             "jsonresume": resume,
-            "sop_version": self.version_string
+            "sop_version": f"{self.version_string}{self.var}"
         }
 
     def parse_standalone(self, text):
@@ -86,7 +87,6 @@ class OAiParser:
         if self.test:
             time.sleep(3)
             if random.random() < 0.3:
-
                 offsets = [2000, 3000, 4000]
                 offset = random.choice(offsets)
                 var = f"p1-{offset}"
@@ -109,7 +109,7 @@ class OAiParser:
                 var = "n"
         logger.debug(f"(OAiParser) perturbation: {var}")
         suffix = f".{var}" if var else ""
-        self.version_string = f"{self.version_string}{suffix}"
+        self.var = f".{var}" if var else ""
         return text, var
 
 
