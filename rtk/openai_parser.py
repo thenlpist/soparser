@@ -102,7 +102,7 @@ class OAiParser:
                 text = "\n".join(new_items)
             elif random.random() < 0.3:
                 var = "p3"
-                text = text[200:].replace("\n", " ")
+                text = text[300:].replace("\n", " ")
             else:
                 var = "n"
         logger.debug(f"(OAiParser) perturbation: {var}")
