@@ -86,25 +86,28 @@ class OAiParser:
         if self.test:
             time.sleep(3)
             if random.random() < 0.3:
-                var = "p1"
-                text = text[:4000]
+
+                offsets = [2000, 3000, 4000]
+                offset = random.choice(offsets)
+                var = f"p1-{offset}"
+                text = text[:offset]
             elif random.random() < 0.3:
                 var = "p2"
-                items = text.split("\n")
-                num_items = len(items)
-                quarter = min(2000, int(num_items / 4))
-                start = items[:quarter]
-                end = items[quarter:]
+                lines = text.split("\n")
+                num_lines = len(lines)
+                offset = min(20, int(num_lines / 4))
+                var = f"p2-{offset}"
+                start = lines[:offset]
+                end = lines[offset:]
                 random.shuffle(end)
                 new_items = start + end
                 text = "\n".join(new_items)
             elif random.random() < 0.3:
                 var = "p3"
-                text = text.replace("\n", " ")
+                text = text[200:].replace("\n", " ")
             else:
                 var = "n"
-        else:
-            logger.debug(f"(OAiParser) perturbation: {var}")
+        logger.debug(f"(OAiParser) perturbation: {var}")
         suffix = f".{var}" if var else ""
         self.version_string = f"{self.version_string}{suffix}"
         return text, var
