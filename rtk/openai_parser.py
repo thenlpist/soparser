@@ -27,9 +27,7 @@ class OAiParser:
     def __init__(self, openai_key, config: Optional[dict]):
         self.config = config
         self.test = bool(self.config.get("test"))
-        logger.info("-" * 80)
         logger.info(f"(OAiParser) config.test: {self.test}")
-        logger.info("-"*80)
         self.validate = Validation()
         self.model = "gpt-4o-2024-08-06"
         openai_key = openai_key if openai_key else os.environ.get("OPENAI_API_KEY", None)
@@ -54,7 +52,7 @@ class OAiParser:
         resume, prompt_tokens, completion_tokens, generation_time = self._query_openai(text)
         num_tokens = prompt_tokens + completion_tokens
         num_chars = len(text)
-        logger.debug("Validating returned object...")
+        # logger.debug("Validating returned object...")
         valid_json, valid_json_resume = self.validate.validate_json_w_pydantic(resume)
         try:
             name = resume["basics"]["name"]
@@ -71,7 +69,7 @@ class OAiParser:
             "num_chars": num_chars,
             "num_tokens": num_tokens,
             "jsonresume": resume,
-            "sop_version": f"{self.version_string}{self.var}"
+            "sop": f"{self.version_string}{self.var}"
         }
 
     def parse_standalone(self, text):
@@ -123,7 +121,7 @@ class OAiParser:
         t1 = time.time()
         try:
             resume_obj, prompt_tokens, completion_tokens = self._get_completion(text)
-            logger.info("(OAiParser) Serializing response...")
+            logger.debug("(OAiParser) Serializing response...")
             resume = self.serializer.to_json_resume(resume_obj)
         except Exception as e:
             logger.error(f"(OAiParser) Error encountered while parsing OpenAI response: {e}")
