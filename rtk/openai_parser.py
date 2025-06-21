@@ -42,9 +42,6 @@ class OAiParser:
         self.version_string = importlib.metadata.version("rtk")
 
     def parse(self, text):
-
-        version = self.version_string
-        print(f"SOParser version: {version}  test: {self.test}")
         valid_key = self._validate_key()
         if not valid_key:
             return {"parser": self.OPENAI_FAIL_NAME,
@@ -88,33 +85,30 @@ class OAiParser:
         var = ""
         if self.test:
             time.sleep(3)
-            logger.debug("(OAiParser) perturbation")
             if random.random() < 0.3:
                 var = "p1"
-                logger.debug("Perturb 1")
-                text = text[:3000]
+                text = text[:4000]
             elif random.random() < 0.3:
                 var = "p2"
-                logger.debug("Perturb 2")
                 items = text.split("\n")
                 num_items = len(items)
-                third = int(num_items / 3)
-                start = items[:third]
-                end = items[third:]
+                quarter = min(2000, int(num_items / 4))
+                start = items[:quarter]
+                end = items[quarter:]
                 random.shuffle(end)
                 new_items = start + end
                 text = "\n".join(new_items)
             elif random.random() < 0.3:
                 var = "p3"
-                logger.debug("Perturb 3")
                 text = text.replace("\n", " ")
             else:
                 var = "n"
         else:
-            logger.debug("(OAiParser) No perturbation")
+            logger.debug(f"(OAiParser) perturbation: {var}")
         suffix = f".{var}" if var else ""
         self.version_string = f"{self.version_string}{suffix}"
         return text, var
+
 
     def _validate_key(self):
         if self.openai_is_available == False:
