@@ -1,6 +1,6 @@
 [project]
 name = "rtk"
-version = "0.1.1"
+version = "0.1.3"
 description = "Structured Output Parser"
 authors = [
     { name = "The NLPist", email = "abobicesaevior@gmail.com" },
