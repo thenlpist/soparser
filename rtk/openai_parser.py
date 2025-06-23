@@ -27,13 +27,17 @@ class OAiParser:
     def __init__(self, openai_key, config: Optional[dict]):
         self.config = config
         flags = {(f["name"]): {"enabled": f["enabled"], "environment": f.get("environment", None) } for f in config["flags"]}
+        logger.debug(f"flags: {flags}")
         experiment = flags.get("experiment", {})
+        logger.debug(f"experiment: {experiment}")
         current_env = config.get("current_env", "")
+        logger.debug(f"current_env: {current_env}")
         if not experiment:
             self.test = False
         else:
             enabled = experiment.get("enabled", False)
             environment = experiment.get("environment", None)
+            logger.debug(f"experiment enabled: {enabled}, environment: {environment}   current env: {current_env}")
             if enabled and environment == current_env:
                 self.test = True
             else:
@@ -117,8 +121,7 @@ class OAiParser:
                 text = text[300:].replace("\n", " ")
             else:
                 var = "n"
-        logger.debug(f"(OAiParser) perturbation: {var}")
-        suffix = f".{var}" if var else ""
+            logger.debug(f"(OAiParser) perturbation: {var}")
         self.var = f".{var}" if var else ""
         return text, var
 
