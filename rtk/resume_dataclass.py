@@ -35,8 +35,8 @@ class Location(BaseModel):
     city: str = Field(..., title="City", description="A city name.")
     region: Optional[str] = Field(title="Region",
                                   description="The state, province or region in component of an address.")
-    countrycode: Optional[str] = Field(title="Country Code", description="A two letter code for a country.")
-    postalcode: Optional[str] = Field(title="Postal Code", description="A postal code, zip code or similar.")
+    countryCode: Optional[str] = Field(title="Country Code", description="A two letter code for a country.")
+    postalCode: Optional[str] = Field(title="Postal Code", description="A postal code, zip code or similar.")
 
 
 class Basics(BaseModel):
@@ -76,9 +76,9 @@ class Education(BaseModel):
     institution: str = Field(title="Institution",
                              description="The name of a university, college or other educational institution.")
     area: Optional[str] = Field(title="Area", description="A major area of study within a degree program.")
-    studytype: Optional[str]
-    startdate: Optional[str] = Field(title="Start date", description="The date on which education studies started.")
-    enddate: Optional[str] = Field(title="End date", description="The date on which education studies ended.")
+    studyType: Optional[str]
+    startDate: Optional[str] = Field(title="Start date", description="The date on which education studies started.")
+    endDate: Optional[str] = Field(title="End date", description="The date on which education studies ended.")
     url: Optional[str] = Field(title="URL", description="A URL for a given educational institution.")
     score: Optional[str] = Field(title="Score",
                                  description="A grade point average, letter grade or other score given by an educational institution.")
@@ -120,8 +120,8 @@ class Project(BaseModel):
     model_config = ConfigDict(strict=True)
 
     name: str = Field(..., title="Name", description="The name of a project.")
-    enddate: Optional[str] = Field(title="End date", description="The date on which a project ended.")
-    startdate: Optional[str] = Field(title="Start date", description="The date on which a project started.")
+    endDate: Optional[str] = Field(title="End date", description="The date on which a project ended.")
+    startDate: Optional[str] = Field(title="Start date", description="The date on which a project started.")
     description: Optional[str] = Field(title="Description",
                                        description="A summary or narrative description of a project.")
     highlights: Optional[list[str]] = Field(title="Highlights",
@@ -141,7 +141,7 @@ class Publication(BaseModel):
     publisher: Optional[str] = Field(title="Publisher",
                                      description="The name of an organization or institution that published a given article.")
     summary: Optional[str] = Field(title="Summary", description="A summary of a published article.")
-    releasedate: Optional[str] = Field(title="Start date", description="The date on which an article was published.")
+    releaseDate: Optional[str] = Field(title="Start date", description="The date on which an article was published.")
     url: Optional[str] = Field(title="URL", description="A URL for a given publication.")
 
 
@@ -176,8 +176,8 @@ class Volunteer(BaseModel):
 
     organization: str = Field(..., title="Organization",
                               description="The name of an organization one volunteered with.")
-    startdate: Optional[str] = Field(title="Start date", description="The date on which volunteer work started.")
-    enddate: Optional[str] = Field(title="End date", description="The date on which a volunteer work ended.")
+    startDate: Optional[str] = Field(title="Start date", description="The date on which volunteer work started.")
+    endDate: Optional[str] = Field(title="End date", description="The date on which a volunteer work ended.")
     position: Optional[str] = Field(title="Position", description="The name or title of a volunteer position.")
     summary: Optional[str] = Field(title="Summary", description="A summary or narrative description of volunteer work.")
     highlights: Optional[list[str]] = Field(title="Highlights",
@@ -196,8 +196,8 @@ class Work(BaseModel):
     location: Optional[str] = Field(title="Location", description="The location of a given company or organization.")
     description: Optional[str] = Field(title="Description",
                                        description="A brief description of a company or organization one worked for.")
-    startdate: Optional[str] = Field(title="Start date", description="The date on which a work experience started.")
-    enddate: Optional[str] = Field(title="End date", description="The date on which a work experience ended.")
+    startDate: Optional[str] = Field(title="Start date", description="The date on which a work experience started.")
+    endDate: Optional[str] = Field(title="End date", description="The date on which a work experience ended.")
 
     summary: Optional[str] = Field(title="Summary", description="A summary or narrative description of volunteer work.")
     highlights: Optional[list[str]] = Field(title="Highlights",
@@ -237,7 +237,7 @@ class ResumeSerializer:
         if basics.location:
             j_basics["location"] = basics.location.__dict__
         else:
-            j_basics["location"] = Location(city='', address='', region='', countrycode='', postalcode='').__dict__
+            j_basics["location"] = Location(city='', address='', region='', countryCode='', postalCode='').__dict__
         j_basics["profiles"] = []
 
         j_resume = {
