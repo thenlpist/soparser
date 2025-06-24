@@ -39,16 +39,37 @@ class TestOpenAIParser(unittest.TestCase):
 
 
 
-    def test_resume2(self):
+    # def test_resume2(self):
+    #     resume_path = self.resources_dir.joinpath("resumes/Ethan.docx")
+    #     # resume_path = resources_dir.joinpath("resumes/Genevieve.pdf")
+    #
+    #     assert resume_path.exists()
+    #     reader = FileReader()
+    #     text = reader.extract_text(resume_path)
+    #     fallback = OAiParser(self.openai_api_key)
+    #     response = fallback.parse(text)
+    #
+    #     verbose = True
+    #     if verbose:
+    #         print("Response:")
+    #         print(f"type(response):  {type(response)}")
+    #         print(json.dumps(response, indent=2))
+    #
+    #
+    #     jsonresume = response.get("jsonresume")
+    #     jsonresume, is_valid_json, is_valid_jsonresume = self.pp.postprocess(jsonresume)
+    #     print(f"is_valid_json:         {is_valid_json}")
+    #     print(f"is_valid_jsonresume:   {is_valid_jsonresume}")
 
 
-        resume_path = resources_dir.joinpath("resumes/Ethan.docx")
+    def test_resume3(self):
+        resume_path = self.resources_dir.joinpath("resumes/Michael Rodriguez.docx")
         # resume_path = resources_dir.joinpath("resumes/Genevieve.pdf")
 
         assert resume_path.exists()
         reader = FileReader()
         text = reader.extract_text(resume_path)
-        fallback = OAiParser(self.openai_api_key)
+        fallback = OAiParser(self.openai_api_key, {})
         response = fallback.parse(text)
 
         verbose = True

@@ -26,7 +26,10 @@ class OAiParser:
 
     def __init__(self, openai_key, config: Optional[dict]):
         self.config = config
-        flags = {(f["name"]): {"enabled": f["enabled"], "environment": f.get("environment", None) } for f in config["flags"]}
+        if config:
+            flags = {(f["name"]): {"enabled": f["enabled"], "environment": f.get("environment", None) } for f in config["flags"]}
+        else:
+            flags = {}
         logger.debug(f"flags: {flags}")
         experiment = flags.get("experiment", {})
         logger.debug(f"experiment: {experiment}")
